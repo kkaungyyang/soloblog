@@ -17,6 +17,7 @@
 // });
 const { test, expect } = require('@playwright/test');
 test('basic test', async ({ page }) => {
+  console.log('THIS IS THE URL: ', baseURL);
   await page.goto('https://playwright.dev/');
   const title = page.locator('.navbar__inner .navbar__title');
   await expect(title).toHaveText('Playwright');
