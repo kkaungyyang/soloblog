@@ -1,25 +1,33 @@
-export const config = {
-  testDir: 'tests',
-  timeout: 30000,
-  browserType: 'chrome',
-  webServer: {
-    command: 'npm run start',
-    port: 3000,
-    timeout: 120 * 1000,
-  },
-  launchConfig: {
-    headless: false,
-  },
-  contextConfig: {
-    viewport: { width: 1280, height: 720 },
-  },
+const { devices } = require('@playwright/test');
+
+/** @type {import('@playwright/test').PlaywrightTestConfig} */
+const config = {
+  workers: 2,
+  retries: 2,
   use: {
-    // Configure browser and context here
-    baseURL: 'http://localhost:3000',
-    browserName: 'firefox',
     headless: false,
+    viewport: { width: 1280, height: 720 },
     launchOptions: {
-      slowMo: 50,
+      slowMo: 1000,
     },
+    video: 'on',
   },
+  projects: [
+    {
+      name: 'Desktop Chromium',
+      use: {
+        browserName: 'chromium',
+      },
+    },
+    // Test against mobile viewports.
+    {
+      name: 'Mobile Safari',
+      use: devices['iPhone 12'],
+    },
+  ],
+  timeout: 30000,
+  globalTimeout: 600000,
+  testDir: './tests',
 };
+
+module.exports = config;
