@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import { Button } from 'antd';
 import Footer from './layouts/footer';
+import Navbar from './layouts/navbar';
+import Login from './pages/auth/login';
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
           Learn React
         </a>
       </header> */}
+      <Login />
       <Button type="primary">Hello</Button>
       <Footer />
     </div>
